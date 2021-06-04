@@ -92,13 +92,19 @@ console.log('The basket is full:', isFull()); // Should log true now that the ba
 // I'm not sure what I'm doing here. This sort of works but doesn't feel right.
 // I was using examples here: https://stackoverflow.com/questions/9792927/javascript-array-search-and-remove-string
 
-// Update: I can't figure out how to fulfill the "null" requirement.
+// Update 1: I can't figure out how to fulfill the "null" requirement.
+// Update 2: Shout out to Jose Rubio for the assist on this.
 
-function removeItem (item) {
-  basket.splice(basket.indexOf(item), 1)
-}
+function removeItem( item ){
+    let index = basket.indexOf( item );
+    if( index == -1 ){
+      return null
+    } // If the item is not in the basket it will return -1
+    return basket.splice( index, 1 );
+ }
 
-console.log(basket);
+removeItem('hat'); // Testing an item not in the basket
+console.log(basket); // Should return full basket with 5 items
 removeItem('socks'); // Removing items one at a time.
 console.log(basket);
 removeItem('shoes');
